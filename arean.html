@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background-color: black !important;
+            color: white !important;
+        }
+
+        input[type=button] {
+            background-color: darkblue !important;
+        }
+
+        input[type=text] {
+            background-color: darkgray !important;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#calculate').click(function () {
+                $val = $('#score').val();
+                res = '<table>'
+                ms = [400, 1600, 3200, 5200, 8000]
+                ms.forEach((element, index) => {
+                    diff = element - Number($val)
+                    if (diff > 0) {
+                        res += "<tr><td><h4>milestone " + (index + 1) + ": " + Math.ceil(diff / 60) + " fights (" + Math.ceil(Math.ceil(diff / 60) / 3) + " batch )</h4></td></tr>"
+                    }
+                });
+                res += "</table>"
+                console.log(res, "res")
+                $('#milestones').html(res);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Arena Score</h2>
+        <form>
+            <div class="form-group">
+                <label for="usr">Current Score:</label>
+                <input type="text" id="score">
+                <input type="button" value="Calcaulte" id="calculate"></div>
+            <div id="milestones"></div id="milestones">
+    </div>
+    </form>
+    </div>
+
+</body>
+
+</html>
